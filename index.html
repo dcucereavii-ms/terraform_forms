@@ -3,21 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Form</title>
+    <title>Custom Forms</title>
+    <style>
+        .form-container {
+            display: none;
+        }
+        .form-container.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <h2>Custom Form</h2>
-    <form action="submit-handler.php" method="POST">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
-        
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
-        
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
-        
-        <button type="submit">Submit</button>
-    </form>
+    <h1>Custom Forms</h1>
+    
+    <div id="form-switcher">
+        <button onclick="showForm('storage')">Storage Account</button>
+        <button onclick="showForm('vm')">Virtual Machine</button>
+        <button onclick="showForm('app')">App Service</button>
+    </div>
+    
+    <div id="storage-form" class="form-container">
+        <h2>Storage Account Form</h2>
+        <!-- Your Storage Account Form HTML here -->
+    </div>
+    
+    <div id="vm-form" class="form-container">
+        <h2>Virtual Machine Form</h2>
+        <!-- Your Virtual Machine Form HTML here -->
+    </div>
+    
+    <div id="app-form" class="form-container">
+        <h2>App Service Form</h2>
+        <!-- Your App Service Form HTML here -->
+    </div>
+
+    <script>
+        function showForm(formType) {
+            // Hide all form containers
+            document.querySelectorAll('.form-container').forEach(container => {
+                container.classList.remove('active');
+            });
+
+            // Show the selected form container
+            document.getElementById(formType + '-form').classList.add('active');
+        }
+    </script>
 </body>
 </html>
