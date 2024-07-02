@@ -24,17 +24,51 @@
     
     <div id="storage-form" class="form-container">
         <h2>Storage Account Form</h2>
-        <!-- Your Storage Account Form HTML here -->
+        <form id="storage-form-fields" onsubmit="submitForm('storage'); return false;">
+            <label for="storage-name">Name:</label><br>
+            <input type="text" id="storage-name" name="storage-name" required><br>
+            
+            <label for="storage-location">Location:</label><br>
+            <select id="storage-location" name="storage-location" required>
+                <option value="eastus">East US</option>
+                <option value="westus">West US</option>
+                <option value="centralus">Central US</option>
+                <!-- Add more options as needed -->
+            </select><br>
+            
+            <button type="submit">Submit</button>
+        </form>
     </div>
     
     <div id="vm-form" class="form-container">
         <h2>Virtual Machine Form</h2>
-        <!-- Your Virtual Machine Form HTML here -->
+        <form id="vm-form-fields" onsubmit="submitForm('vm'); return false;">
+            <label for="vm-name">Name:</label><br>
+            <input type="text" id="vm-name" name="vm-name" required><br>
+            
+            <label for="vm-size">Size:</label><br>
+            <select id="vm-size" name="vm-size" required>
+                <option value="Standard_B1s">Standard_B1s</option>
+                <option value="Standard_D2s_v3">Standard_D2s_v3</option>
+                <option value="Standard_F2s_v2">Standard_F2s_v2</option>
+                <!-- Add more options as needed -->
+            </select><br>
+            
+            <button type="submit">Submit</button>
+        </form>
     </div>
     
     <div id="app-form" class="form-container">
         <h2>App Service Form</h2>
-        <!-- Your App Service Form HTML here -->
+        <form id="app-form-fields" onsubmit="submitForm('app'); return false;">
+            <label for="app-name">Name:</label><br>
+            <input type="text" id="app-name" name="app-name" required><br>
+            
+            <label for="app-plan">App Service Plan:</label><br>
+            <input type="text" id="app-plan" name="app-plan" required><br>
+            
+            <button type="submit">Submit</button>
+        </form>
     </div>
 
     <script>
@@ -46,6 +80,22 @@
 
             // Show the selected form container
             document.getElementById(formType + '-form').classList.add('active');
+        }
+
+        function submitForm(formType) {
+            // Fetch form data
+            const formData = new FormData(document.getElementById(formType + '-form-fields'));
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Example: Log form data to console (replace with actual submission logic)
+            console.log('Form Data for ' + formType + ':', data);
+
+            // Example: Submit form data to a backend or trigger a pipeline
+            // Replace this with your actual implementation to trigger Terraform or other actions
+            alert('Form submitted for ' + formType + '. See console for details.');
         }
     </script>
 </body>
